@@ -1,3 +1,4 @@
 /Dapper.Infra/bin
 /Dapper.Infra/obj
 /packages
+*.suo
