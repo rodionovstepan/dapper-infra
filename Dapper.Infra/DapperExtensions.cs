@@ -5,14 +5,16 @@
 
     public static class DapperExtensions
     {
-        public static IEnumerable<T> Query<T>(this IDbConnection connection, QueryObject queryObject)
+        public static IEnumerable<T> Query<T>(this IDbConnection connection, QueryObject queryObject,
+            IDbTransaction transaction = null, bool buffered = true, int? timeout = null, CommandType? type = null)
         {
-            return connection.Query<T>(queryObject.Sql, queryObject.QueryParams);
+            return connection.Query<T>(queryObject.Sql, queryObject.QueryParams, transaction, buffered, timeout, type);
         }
 
-        public static int Execute(this IDbConnection connection, QueryObject queryObject)
+        public static int Execute(this IDbConnection connection, QueryObject queryObject,
+            IDbTransaction transaction = null, int? timeout = null, CommandType? type = null)
         {
-            return connection.Execute(queryObject.Sql, queryObject.QueryParams);
+            return connection.Execute(queryObject.Sql, queryObject.QueryParams, transaction, timeout, type);
         }
     }
 }
